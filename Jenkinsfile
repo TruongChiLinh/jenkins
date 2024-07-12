@@ -10,7 +10,7 @@ pipeline {
              steps {
                  // This step should not normally be used in your script. Consult the inline help for details.
                 withDockerRegistry(credentialsId: 'dockerhub' , url: '') {
-                sh label: '' ,script: 'docker pull jaytruong/demo'
+                sh label: '' ,script: 'docker pull jaytruong/demo:app-demo'
 }
              }
          }
