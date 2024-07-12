@@ -11,8 +11,8 @@ pipeline {
                 // This step should not normally be used in your script. Consult the inline help for details.
                 withDockerRegistry(credentialsId: 'docker-hub' ,url :'') {
                // some block
-               sh label:'' ,script: 'docker build -t jaytruong/demo:latest .'
-               sh label:'' ,script: 'docker push  jaytruong/demo:latest'
+               sh label:'' ,script: 'docker build -t jaytruong/demo:app-test1 .'
+               sh label:'' ,script: 'docker push  jaytruong/demo:app-test1'
              } 
             }
         }
