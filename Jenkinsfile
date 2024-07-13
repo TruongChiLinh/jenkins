@@ -9,8 +9,9 @@ pipeline {
         stage('Push docker Hub') {
              steps {
                  // This step should not  normal l y be used in your script . Consult the inline help for details.
-                withDockerRegistry(credentialsId: 'dockerhub' , url: '') {
+                withDockerRegistry([credentialsId: 'dockerhub' , url: '']) {
                 // sh label: '' ,script: 'docker pull jaytruong/demo:app-demo'
+                sh 'docker --version'
                 sh 'docker pull jaytruong/demo:app-demo'
                 }
              }
