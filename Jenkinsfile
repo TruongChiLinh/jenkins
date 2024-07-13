@@ -7,7 +7,7 @@
                 }
             }
             stage('Push docker Hub') {
-                // This step should not normally be  used in  your script. Con sult the inline help for details.
+                // This step should not normally be  used in  your script. Consult the inline help for details.
                 steps {
                     withDockerRegistry(credentialsId: 'testhub' ,url:'') {
                         // some block
