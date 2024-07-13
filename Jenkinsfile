@@ -6,7 +6,7 @@
                 git 'https://github.com/TruongChiLinh/jenkins.git'
                 }
             }
-            stages {
+        
                 stage('Pull image') {
                     steps {
                         // This step should not normally be used in your script. Consult the inline help for details.
@@ -16,7 +16,7 @@
                         }
                     }
                 }
-            }
+            
         //     stage('Push docker Hub') {
         //         // This step should not  normally  be  used in  your script. Consult the inline help for details.
         //         steps {
