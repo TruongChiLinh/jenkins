@@ -14,7 +14,7 @@ pipeline {
          stage('Pull Docker Image') {
             steps {
                 script {
-                    // Pull image từ Docker Hub
+                    // Pull image từ Docker Hub tu repo
                     docker.image('nginx').pull()
                 }
             }
