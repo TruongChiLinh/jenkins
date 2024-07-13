@@ -2,7 +2,7 @@ pipeline {
     agent any
    
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('hubdocker')
+        DOCKERHUB_CREDENTIALS = credentials('hub1')
     }
    
     stages {
@@ -21,6 +21,10 @@ pipeline {
                         sh 'docker pull jaytruong/demo:app-demo'
                     }
                 }
+                // This step should not normally be used in your script. Consult the inline help for details.
+                    // withDockerRegistry(credentialsId: 'hub1') {
+                    //     // some block
+                    // }
             }
         }
     }
