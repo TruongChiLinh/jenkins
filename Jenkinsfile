@@ -11,8 +11,8 @@ pipeline {
             steps {
                 script {
                     // Kiểm tra phiên bản Docker
-                    sh 'docker --version'
-                    echo "Docker version: $(docker --version)"
+                    def dockerVersion = sh(script: 'docker --version', returnStdout: true).trim()
+                    echo "Docker version: ${dockerVersion}"
                 }
             }
         }
