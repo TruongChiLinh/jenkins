@@ -1,36 +1,28 @@
 pipeline {
     agent any
-   
-    environment {
-        DOCKERHUB_CREDENTIALS = credentials('hubdocker')
-    }
-   
+
     stages {
         stage('Clone Code') {
             steps {
                 git 'https://github.com/TruongChiLinh/jenkins.git'
             }
         }
-        //  stage('Pull Docker Image') {
-        //     steps {
-        //         script {
-        //             // Pull image từ Docker Hub tu repo
-        //             docker.image('nginx').pull()
-        //         }
-        //     }
-        // }
-   
-    
-    
         stage('Test Docker') {
             steps {
                 script {
-                    def dockerVersion = sh(script: 'docker --version', returnStdout: true).trim()
-                    echo "Docker version: ${dockerVersion}"
+                    // Kiểm tra phiên bản Docker
+                    sh 'docker --version'
+                    echo "Docker version: $(docker --version)"
                 }
             }
         }
-   
+        stage('Pull Docker Image') {
+            steps {
+                script {
+                    // Pull image từ Docker Hub
+                    sh 'docker pull nginx:latest'
+                }
+            }
+        }
     }
-    
 }
