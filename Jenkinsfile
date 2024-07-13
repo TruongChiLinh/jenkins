@@ -19,7 +19,7 @@ pipeline {
         stage('Pull Docker Image') {
             steps {
                 script {
-                    // Pull image từ Docker Hub
+                    // Pull image từ Docker Hu b
                     sh 'docker pull nginx:latest'
                 }
             }
