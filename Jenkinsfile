@@ -17,8 +17,8 @@ pipeline {
             steps {
                 script {
                     // Đăng nhập vào Docker Hub với token
-                    docker.withRegistry('https://index.docker.io/v1/', 'DOCKERHUB_TOKEN') {
-                        sh "echo $DOCKERHUB_TOKEN_PSW | docker login -u $DOCKERHUB_USER --password-stdin"
+                    withCredentials([usernamePassword(credentialsId: 'hub1', usernameVariable: 'DOCKERHUB_USER', passwordVariable: 'DOCKERHUB_TOKEN')]) {
+                        sh "echo $DOCKERHUB_TOKEN | docker login -u $DOCKERHUB_USER --password-stdin"
                         sh 'docker pull jaytruong/demo:app-demo'
                     }
                 }
