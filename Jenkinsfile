@@ -1,33 +1,41 @@
-    pipeline {
-        agent any 
-        stages {
-            stage('Clone Code') {
-                steps {
+pipeline {
+    agent any
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('hubdocker')
+    }
+    stages {
+        stage('Clone Code') {
+            steps {
                 git 'https://github.com/TruongChiLinh/jenkins.git'
-                }
             }
-        
-                stage('Pull image') {
-                    steps {
-                        // This step should not normally be used in your script. Consult the inline help for details.
-                       // This step should not normally be used in your script. Consult the inline help for details.
-                        withDockerRegistry(credentialsId: 'hubdocker' ,url:'') {
-                            sh 'docker login '
-                        }
+        }
+        stage('Login to Docker Hub') {
+            steps {
+                script {
+                    docker.withRegistry('', DOCKERHUB_CREDENTIALS) {
+                        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                     }
                 }
-            
-        //     stage('Push docker Hub') {
-        //         // This step should not  normally  be  used in  your script. Consult the inline help for details.
-        //         steps {
-        //             withDockerRegistry(credentialsId: 'testhub' ,url:'') {
-        //                 // some block
-        //                 sh 'docker --version'
-        //                 sh 'docker login'
-        //                 sh 'docker pull nginx'
+            }
+        }
+        stage('Pull Docker Image') {
+            steps {
+                sh 'docker pull nginx'
+            }
+        }
+        // stage('Build Docker Image') {
+        //     steps {
+        //         sh 'docker build -t your_dockerhub_username/your_image_name:latest .'
+        //     }
+        // }
+        // stage('Push Docker Image') {
+        //     steps {
+        //         script {
+        //             docker.withRegistry('', DOCKERHUB_CREDENTIALS) {
+        //                 sh 'docker push your_dockerhub_username/your_image_name:latest'
         //             }
         //         }
         //     }
-         }
+        // }
     }
-    
+}
