@@ -10,9 +10,9 @@
                 stage('Pull image') {
                     steps {
                         // This step should not normally be used in your script. Consult the inline help for details.
-                        withDockerRegistry(credentialsId: 'hubdocker' ,url:'') {
-                           sh 'docker --version' 
-                           sh 'docker pull nginx'
+                       // This step should not normally be used in your script. Consult the inline help for details.
+                        withDockerRegistry(credentialsId: 'hubdocker') {
+                            sh 'docker login '
                         }
                     }
                 }
