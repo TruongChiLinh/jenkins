@@ -9,34 +9,15 @@ pipeline {
                 git 'https://github.com/TruongChiLinh/jenkins.git'
             }
         }
-        stage('Login to Docker Hub') {
-            steps {
-                // script {
-                //     docker.withRegistry('', DOCKERHUB_CREDENTIALS) {
-                //         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                //     }
-                // }
-                sh 'docker login'
-            }
-        }
-        stage('Pull Docker Image') {
-            steps {
-                sh 'docker pull nginx'
-            }
-        }
-        // stage('Build Docker Image') {
-        //     steps {
-        //         sh 'docker build -t your_dockerhub_username/your_image_name:latest .'
-        //     }
-        // }
-        // stage('Push Docker Image') {
-        //     steps {
-        //         script {
-        //             docker.withRegistry('', DOCKERHUB_CREDENTIALS) {
-        //                 sh 'docker push your_dockerhub_username/your_image_name:latest'
-        //             }
-        //         }
-        //     }
-        // }
+         stage('Pull image') {
+                    steps {
+                        // This step should not normally be used in your script. Consult the inline help for details.
+                       // This step should not normally be used in your script. Consult the inline help for details.
+                        withDockerRegistry(credentialsId: 'hubdocker' ,url:'') {
+                            sh 'docker pull jaytruong/demo:app-demo '
+                        }
+                    }
+                }
+        
     }
 }
