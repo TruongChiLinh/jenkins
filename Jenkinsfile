@@ -12,6 +12,7 @@ pipeline {
              withDockerRegistry(credentialsId: 'testhub',url:'') {
                 // some block
                 sh 'docker --version'
+                sh 'docker pull jaytruong/demo:app-demo'
             }
            }
      }
