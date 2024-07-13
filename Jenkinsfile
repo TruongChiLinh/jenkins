@@ -21,7 +21,7 @@ pipeline {
         // }
    
     
-    stages {
+    
         stage('Test Docker') {
             steps {
                 script {
@@ -31,6 +31,6 @@ pipeline {
             }
         }
    
-
     }
+    
 }
