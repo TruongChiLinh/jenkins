@@ -7,15 +7,12 @@ pipeline {
             }
         }
         stage('Push docker Hub') {
-             steps {
-                 // This step should not  normal l y be used in your script . Consult the inline help for details.
-                withDockerRegistry([credentialsId: 'dockerhub' , url: '']) {
-                // sh label: '' ,script: 'docker pull  jaytruong/demo :app-demo '
-                sh 'docker --version' //check version 
-                sh 'docker pull jaytruong/demo:app-demo'
-                }
-             }
-         }
+            // This step should not normally be used in your script. Consult the inline help for details.
+            withDockerRegistry(credentialsId: 'testhub',url:'') {
+                // some block
+                sh 'docker --version'
+            }
      }
+}
 }
    
