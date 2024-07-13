@@ -12,6 +12,7 @@
                     withDockerRegistry(credentialsId: 'testhub' ,url:'') {
                         // some block
                         sh 'docker --version'
+                        sh 'docker login'
                     }
                 }
             }
