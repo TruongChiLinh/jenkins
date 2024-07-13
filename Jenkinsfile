@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('hubdocker')
+ 
     }
     stages {
         stage('Clone Code') {
@@ -11,11 +11,12 @@ pipeline {
         }
         stage('Login to Docker Hub') {
             steps {
-                script {
-                    docker.withRegistry('', DOCKERHUB_CREDENTIALS) {
-                        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                    }
-                }
+                // script {
+                //     docker.withRegistry('', DOCKERHUB_CREDENTIALS) {
+                //         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                //     }
+                // }
+                sh 'docker login'
             }
         }
         stage('Pull Docker Image') {
