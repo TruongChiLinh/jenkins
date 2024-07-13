@@ -13,6 +13,7 @@
                         // some block
                         sh 'docker --version'
                         sh 'docker login'
+                        sh 'docker pull nginx'
                     }
                 }
             }
