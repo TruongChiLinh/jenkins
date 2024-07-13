@@ -11,7 +11,7 @@
                     steps {
                         // This step should not normally be used in your script. Consult the inline help for details.
                        // This step should not normally be used in your script. Consult the inline help for details.
-                        withDockerRegistry(credentialsId: 'hubdocker') {
+                        withDockerRegistry(credentialsId: 'hubdocker' ,url:'') {
                             sh 'docker login '
                         }
                     }
