@@ -11,13 +11,26 @@ pipeline {
                 git 'https://github.com/TruongChiLinh/jenkins.git'
             }
         }
-         stage('Pull Docker Image') {
+        //  stage('Pull Docker Image') {
+        //     steps {
+        //         script {
+        //             // Pull image từ Docker Hub tu repo
+        //             docker.image('nginx').pull()
+        //         }
+        //     }
+        // }
+   
+    
+    stages {
+        stage('Test Docker') {
             steps {
                 script {
-                    // Pull image từ Docker Hub tu repo
-                    docker.image('nginx').pull()
+                    def dockerVersion = sh(script: 'docker --version', returnStdout: true).trim()
+                    echo "Docker version: ${dockerVersion}"
                 }
             }
         }
+   
+
     }
 }
