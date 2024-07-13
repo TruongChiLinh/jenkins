@@ -2,7 +2,8 @@ pipeline {
     agent any
    
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('hub1');
+        DOCKERHUB_USER = 'jaytruong'
+        DOCKERHUB_TOKEN = credentials('hub1')
     }
    
     stages {
@@ -15,16 +16,12 @@ pipeline {
         stage('Pull Docker Image') {
             steps {
                 script {
-                    // Đăng nhập vào Docker Hub
-                    docker.withRegistry('', DOCKERHUB_CREDENTIALS) {
-                        // Kéo hình ảnh từ Docker Hub
+                    // Đăng nhập vào Docker Hub với token
+                    docker.withRegistry('https://index.docker.io/v1/', 'DOCKERHUB_TOKEN') {
+                        sh "echo $DOCKERHUB_TOKEN_PSW | docker login -u $DOCKERHUB_USER --password-stdin"
                         sh 'docker pull jaytruong/demo:app-demo'
                     }
                 }
-                // This step should not normally be used in your script. Consult the inline help for details.
-                    // withDockerRegistry(credentialsId: 'hub1') {
-                    //     // some block
-                    // }
             }
         }
     }
