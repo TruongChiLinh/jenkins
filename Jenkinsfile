@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     // Pull image từ Docker Hu b
-                    sh 'docker pull nginx:latest'
+                    sh 'docker pull jaytruong/demo:app-demo'
                 }
             }
         }
