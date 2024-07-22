@@ -15,4 +15,8 @@ jobs:
 
       - name: Print Hello World
         run: echo "Hello World"
+      - name: Check Version Node
+        run: |
+          echo "Node.js version:"
+          node --version
        
