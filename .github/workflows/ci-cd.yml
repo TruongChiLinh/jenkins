@@ -16,8 +16,6 @@ jobs:
       - name: Build
         run: echo "Building..."
         
-      
-
   test:
     runs-on: ubuntu-latest
     needs: [build] 
@@ -30,14 +28,13 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-
     needs: [test] 
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Deploy
-        if: github.event_name == push # Chỉ chạy khi được kích hoạt thủ công
         run: |
           echo "Deploying..."
