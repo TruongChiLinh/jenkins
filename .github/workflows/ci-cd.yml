@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch: # Sự kiện để kích hoạt thủ công
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'production'
 
 jobs:
   build:
@@ -38,5 +44,4 @@ jobs:
 
       - name: Deploy
         run: |
-          echo "Deploying..."
-
+          echo "Deploying to ${{ github.event.inputs.environment }}..."
