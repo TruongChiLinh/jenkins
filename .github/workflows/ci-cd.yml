@@ -1,9 +1,9 @@
 name: CI/CD Pipeline
+
 on:
- push:
-      branches: [ master ]
- workflow_dispatch: 
-   
+  push:
+    branches: [ master ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -18,19 +18,24 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    needs: [build]
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Test
-        run: echo "Testing..."
+        id: test_job
+        run: |
+          # Replace with your actual test commands
+          echo "Testing..."
+          # Assuming some condition determines if deployment should proceed
+          echo "CONTINUE_JOBS=true" >> $GITHUB_ENV
+          echo "::set-output name=CONTINUE_JOBS::true"
 
   deploy:
     runs-on: ubuntu-latest
     needs: [test]
-    
+    if: ${{ needs.test.outputs.CONTINUE_JOBS == 'true' }}
 
     steps:
       - name: Checkout repository
@@ -38,4 +43,5 @@ jobs:
 
       - name: Deploy
         run: |
-          echo "Deploying to ${{ github.event.inputs.environment }}..."
+          echo "Deploying..."
+
