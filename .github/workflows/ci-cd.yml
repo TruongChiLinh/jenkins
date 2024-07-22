@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - master  # Chỉ kích hoạt khi có push vào nhánh master
+      - master 
 
 jobs:
   build:
@@ -33,7 +33,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: test  # Chỉ chạy bước deploy khi bước test đã hoàn thành thành công
-    if: ${{ success() && steps.test.outputs.set_deploy_flag == 'Deploy if needed' }}  # Chỉ chạy khi bước test thành công và đã set flag
+
+    if: ${{ success() && steps.test.outputs.set_deploy_flag == 'Deploy if needed' }}  # Biểu thức điều kiện sử dụng đúng cú pháp
 
     steps:
       - name: Checkout repository
