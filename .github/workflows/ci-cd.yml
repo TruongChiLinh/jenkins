@@ -38,6 +38,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Deploy
-        if: github.event_name == 'workflow_dispatch'  # Chỉ chạy khi được kích hoạt thủ công
+        if: github.event_name == push # Chỉ chạy khi được kích hoạt thủ công
         run: |
           echo "Deploying..."
