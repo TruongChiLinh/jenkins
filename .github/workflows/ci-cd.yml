@@ -34,8 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: test  # Chỉ chạy bước deploy khi bước test đã hoàn thành thành công
 
-    if: ${{ success() && steps.test.outputs.set_deploy_flag == 'Deploy if needed' }}  # Biểu thức điều kiện sử dụng đúng cú pháp
-
+   
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
