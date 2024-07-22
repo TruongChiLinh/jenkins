@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     outputs:
-        CONTINUE_JOB: ${{ steps.test.outputs. }}
+        CONTINUE_JOB: ${{ steps.test.outputs.CONTINUE_JOBS == 'true' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
