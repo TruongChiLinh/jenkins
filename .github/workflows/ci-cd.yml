@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - master  
+      - master
 
 jobs:
   build:
@@ -15,10 +15,10 @@ jobs:
 
       - name: Build
         run: echo "Building..."
-        
+
   test:
     runs-on: ubuntu-latest
-    needs: [build] 
+    needs: [build]
 
     steps:
       - name: Checkout repository
@@ -29,9 +29,14 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: [test] 
-    if: success()
+    needs: [test]
+    if: github.event_name == 'workflow_dispatch'
 
     steps:
       - name: Checkout repository
-        uses: actions/ configured correctly
+        uses: actions/checkout@v2
+
+      - name: Deploy
+        run: |
+          echo "Deploying..."
+
