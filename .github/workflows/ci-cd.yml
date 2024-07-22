@@ -1,15 +1,9 @@
 name: CI/CD Pipeline
-
 on:
-  push:
-    branches:
-      - master
-  workflow_dispatch: # Sự kiện để kích hoạt thủ công
-    inputs:
-      environment:
-        description: 'Environment to deploy to'
-        required: true
-        default: 'production'
+ push:
+      branches: [ master ]
+ workflow_dispatch: 
+   
 
 jobs:
   build:
