@@ -15,10 +15,12 @@ jobs:
 
       - name: Build
         run: echo "Building..."
+        
+      
 
   test:
     runs-on: ubuntu-latest
-
+    needs: [build] 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -29,7 +31,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    needs: [test] 
+    needs: [build] 
 
     steps:
       - name: Checkout repository
