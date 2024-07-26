@@ -13,6 +13,7 @@ pipeline {
                git 'https://github.com/TruongChiLinh/jenkins.git'
             }
         }
+    }
         // stage('Test Docker') {
         //     steps {
         //         script {
@@ -31,7 +32,7 @@ pipeline {
         //         }
         //     }
         // }
-         stages {
+    stages {
         stage('Deploy') {
             steps {
                 script {
@@ -46,6 +47,6 @@ pipeline {
                 }
             }
         }
-         }
-            }
+    }
+            
 }
