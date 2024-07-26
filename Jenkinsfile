@@ -26,7 +26,7 @@ pipeline {
         //     steps {
         //         script {
         //             // Pull image từ Docker Hu b
-        //             sh 'docker --version'
+        //             sh 'docker --version' 
         //              sh 'docker pull jaytruong/demo:app-demo'
         //         }
         //     }
