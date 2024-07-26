@@ -8,6 +8,13 @@ pipeline {
     }
 
     stages {
+        stage('Install sshpass') {
+            steps {
+                script {
+                    sh 'apt-get update && apt-get install -y sshpass'
+                }
+            }
+        }
         stage('Clone Code') {
             steps {
                 git 'https://github.com/TruongChiLinh/jenkins.git'
