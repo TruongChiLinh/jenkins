@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Clone Code') {
             steps {
-                git 'https://github.com/TruongChiLinh/jenkins.git'
+               git 'https://github.com/TruongChiLinh/jenkins.git'
             }
         }
         stage('Test Docker') {
