@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        SSH_USER = 'vps1'
+        SSH_HOST = '192.168.254.115'
+        SSH_PASSWORD = '1234' // Sử dụng Jenkins credentials để bảo mật mật khẩu
+    }
     stages {
         stage('Clone Code') {
             steps {
@@ -25,5 +30,21 @@ pipeline {
                 }
             }
         }
-    }
+         stages {
+        stage('Deploy') {
+            steps {
+                script {
+                    sh """
+                    sshpass -p '${SSH_PASSWORD}' ssh ${SSH_USER}@${SSH_HOST} << 'EOF'
+                        echo "Connected to remote server"
+                        # Thực hiện các lệnh trên máy chủ từ xa
+                        // cd /path/to/remote/directory
+                        // ./deploy.sh
+                    EOF
+                    """
+                }
+            }
+        }
+         }
+            }
 }
