@@ -4,7 +4,7 @@ pipeline {
     environment {
         SSH_USER = 'vps1'
         SSH_HOST = '192.168.254.115'
-        SSH_PASSWORD = '1234' // Sử dụng Jenkins credentials để bảo mật mật khẩu  
+        SSH_PASSWORD = '1234' // Sử dụng Jenkins credentials để bảo mật mật khẩu  t
     }
 
     stages {
