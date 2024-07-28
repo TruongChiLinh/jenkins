@@ -4,14 +4,15 @@ pipeline {
     environment {
         SSH_USER = 'vps1'
         SSH_HOST = '192.168.254.115'
-         SSH_PASSWORD = credentials('ssh-passwork') // Sử dụng Jenkins credentials để bảo mật mật khẩu   
+        SSH_PASSWORD = credentials('ssh-password') // Sử dụng Jenkins credentials
     }
 
     stages {
         stage('Install sshpass') {
             steps {
                 script {
-                    sh 'sudo apt-get update && sudo apt-get install -y sshpass'
+                    // Cài đặt sshpass mà không cần sử dụng sudo
+                    sh 'apt-get update && apt-get install -y sshpass'
                 }
             }
         }
@@ -21,35 +22,15 @@ pipeline {
             }
         }
 
-        // stage('Test Docker') {
-        //     steps {
-        //         script {
-        //             // Kiểm tra phiên bản Docker
-        //             def dockerVersion = sh(script: 'docker --version', returnStdout: true).trim()
-        //             echo "Docker version: ${dockerVersion}"
-        //         }
-        //     }
-        // }
-
-        // stage('Pull Docker Image') {
-        //     steps {
-        //         script {
-        //             // Pull image từ Docker Hu b
-        //             sh 'docker --version' 
-        //              sh 'docker pull jaytruong/demo:app-demo'
-        //         }
-        //     }
-        // }
-
         stage('Deploy') {
             steps {
                 script {
                     sh """
                     sshpass -p '${SSH_PASSWORD}' ssh ${SSH_USER}@${SSH_HOST} << 'EOF'
-                        echo "Connected to remote server"
+                        echo "Đã kết nối đến máy chủ từ xa"
                         # Thực hiện các lệnh trên máy chủ từ xa
-                        // cd /path/to/remote/directory
-                        // ./deploy.sh
+                        # cd /path/to/remote/directory
+                        # ./deploy.sh
                     EOF
                     """
                 }
