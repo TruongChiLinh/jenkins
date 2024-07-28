@@ -16,7 +16,7 @@ pipeline {
                 }
             }
         }
-     stages {
+    stages {
         stage('Test Credentials') {
             steps {
                 script {
@@ -25,13 +25,16 @@ pipeline {
             }
         }
     }
-        stage('Clone Code') {
+    stages{
+         stage('Clone Code') {
             steps {
                 git 'https://github.com/TruongChiLinh/jenkins.git'
             }
         }
+    }
 
-        stage('Deploy') {
+    stages{
+          stage('Deploy') {
             steps {
                 script {
                     sh """
@@ -45,5 +48,6 @@ pipeline {
                 }
             }
         }
+    }
     }
 }
