@@ -16,6 +16,15 @@ pipeline {
                 }
             }
         }
+     stages {
+        stage('Test Credentials') {
+            steps {
+                script {
+                    echo "Mật khẩu SSH: ${SSH_PASSWORD}" // In mật khẩu ra để kiểm tra
+                }
+            }
+        }
+    }
         stage('Clone Code') {
             steps {
                 git 'https://github.com/TruongChiLinh/jenkins.git'
